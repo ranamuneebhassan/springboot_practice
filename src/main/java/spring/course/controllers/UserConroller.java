@@ -4,9 +4,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import spring.course.model.UserModel;
+import spring.course.services.TimeService;
+import spring.course.services.TimeServiceImp;
 import spring.course.services.UserService;
 import spring.course.services.UserServiceImp;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -16,13 +19,12 @@ public class UserConroller {
 
   //  private Map<String,UserModel> userMap=new HashMap<>();
     private UserServiceImp service;
+    private final TimeServiceImp timeService;
 
     public UserConroller()
     {
-
         service=new UserServiceImp();
-      //  userMap.put("muneeb", new UserModel("Muneeb","Hassan",123));
-      //  userMap.put("hassan", new UserModel("Rana","Hassan",113));
+        timeService=new TimeServiceImp();
     }
 
     @GetMapping("/getUser/{userName}")
@@ -35,7 +37,8 @@ public class UserConroller {
     @PostMapping ("/addUser")
     public ResponseEntity<HttpStatus> createUser(@RequestBody UserModel user1)
     {
-        //userMap.put(user1.getFirstName(),user1);
+        user1.setCrteationTime(timeService.getCurrentTime("Berlin"));
+        System.out.println(timeService.getCurrentTime("Berlin"));
         service.addUser(user1);
         return ResponseEntity.accepted().build();
     }
@@ -44,7 +47,6 @@ public class UserConroller {
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("userName") String userName)
     {
         service.deleteUser(userName);
-        //userMap.remove(userName);
         return ResponseEntity.noContent().build();
     }
 }

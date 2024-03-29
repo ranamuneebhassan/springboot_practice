@@ -1,17 +1,29 @@
 package spring.course.model;
 
 public class UserModel {
-    public UserModel(String firstName, String lastName, Integer memberId) {
+
+    private String lastName;
+    private Integer memberId;
+    private String firstName;
+    private String crteationTime;
+    public UserModel(String firstName, String lastName, Integer memberId,String time) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.memberId = memberId;
+        this.crteationTime=time;
     }
 
     public UserModel(){
 
     }
-    private String firstName;
 
+    public String getCrteationTime() {
+        return crteationTime;
+    }
+
+    public void setCrteationTime(String crteationTime) {
+        this.crteationTime = crteationTime;
+    }
     public String getFirstName() {
         return firstName;
     }
@@ -36,6 +48,5 @@ public class UserModel {
         this.memberId = memberId;
     }
 
-    private String lastName;
-    private Integer memberId;
+
 }
