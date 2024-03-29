@@ -16,12 +16,6 @@ public class UserConroller {
 
     private Map<String,UserModel> userMap=new HashMap<>();
 
-
-
-
-    
-
-
     public UserConroller( )
     {
         userMap.put("muneeb", new UserModel("Muneeb","Hassan",123));
