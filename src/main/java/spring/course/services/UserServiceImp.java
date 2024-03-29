@@ -8,6 +8,7 @@ import java.util.Map;
 public class UserServiceImp implements UserService{
 
     private Map<String,UserModel> userMap=new HashMap<>();
+
     public UserServiceImp(){
         userMap.put("muneeb", new UserModel("Muneeb","Hassan",123));
         userMap.put("hassan", new UserModel("Rana","Hassan",113));
