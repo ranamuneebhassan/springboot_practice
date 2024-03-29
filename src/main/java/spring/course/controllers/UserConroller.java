@@ -14,32 +14,36 @@ import java.util.Optional;
 @RestController
 public class UserConroller {
 
-    private Map<String,UserModel> userMap=new HashMap<>();
+  //  private Map<String,UserModel> userMap=new HashMap<>();
+    private UserServiceImp service=new UserServiceImp();
 
-    public UserConroller( )
+    public UserConroller()
     {
-        userMap.put("muneeb", new UserModel("Muneeb","Hassan",123));
-        userMap.put("hassan", new UserModel("Rana","Hassan",113));
+
+      //  userMap.put("muneeb", new UserModel("Muneeb","Hassan",123));
+      //  userMap.put("hassan", new UserModel("Rana","Hassan",113));
     }
 
     @GetMapping("/getUser/{userName}")
     public ResponseEntity<UserModel> getuser(@PathVariable("userName") String userName)
     {
-            return ResponseEntity.of(Optional.of(userMap.get(userName)));
+            return ResponseEntity.of(Optional.of(service.getUser(userName)));
 
     }
 
     @PostMapping ("/addUser")
     public ResponseEntity<HttpStatus> createUser(@RequestBody UserModel user1)
     {
-        userMap.put(user1.getFirstName(),user1);
+        //userMap.put(user1.getFirstName(),user1);
+        service.addUser(user1);
         return ResponseEntity.accepted().build();
     }
 
     @DeleteMapping ("/deleteUser/{userName}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable("userName") String userName)
     {
-        userMap.remove(userName);
+        service.deleteUser(userName);
+        //userMap.remove(userName);
         return ResponseEntity.noContent().build();
     }
 }
