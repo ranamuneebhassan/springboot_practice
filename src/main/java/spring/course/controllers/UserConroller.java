@@ -15,11 +15,12 @@ import java.util.Optional;
 public class UserConroller {
 
   //  private Map<String,UserModel> userMap=new HashMap<>();
-    private UserServiceImp service=new UserServiceImp();
+    private UserServiceImp service;
 
     public UserConroller()
     {
 
+        service=new UserServiceImp();
       //  userMap.put("muneeb", new UserModel("Muneeb","Hassan",123));
       //  userMap.put("hassan", new UserModel("Rana","Hassan",113));
     }
